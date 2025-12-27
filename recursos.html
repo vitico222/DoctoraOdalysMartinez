@@ -109,18 +109,25 @@
                 completamente gratis!!!
               </div>
               <form
-                class="resources-form"
-                action="gracias.html"
-                method="post"
+                name="descarga-recursos"
+                method="POST"
                 data-netlify="true"
+                action="/gracias.html"
+                class="resources-form"
               >
-                <input type="hidden" name="e-book" value="descarga-recursos" />
+                <input
+                  type="hidden"
+                  name="form-name"
+                  value="descarga-recursos"
+                />
+
                 <label for="nombre">Nombre:</label>
                 <input
                   type="text"
                   id="nombre"
                   name="nombre"
-                  placeholder="Nombre:"
+                  placeholder="Tu nombre"
+                  required
                 />
                 <label for="email">Correo electrónico:</label>
                 <input
