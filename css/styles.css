@@ -1098,6 +1098,16 @@ body.dark-mode .resources-form input {
   border-color: #666666;
 }
 
+.gracias {
+  font-family: "Parisienne", cursive;
+  font-size: 3rem;
+  color: #02556a;
+  margin: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+  padding-bottom: 2rem;
+}
+
 /* Ajustes responsivos - - - - - - - mid */
 @media (max-width: 768px) {
   .top-bar {
