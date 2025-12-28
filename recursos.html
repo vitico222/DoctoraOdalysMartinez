@@ -113,8 +113,8 @@
                 name="descarga-recursos"
                 method="POST"
                 data-netlify="true"
-                action="gracias.html"
                 class="resources-form"
+                id="descarga-form"
               >
                 <input
                   type="hidden"
@@ -144,6 +144,32 @@
                   Descargar Gratis
                 </button>
               </form>
+
+              <!-- Mensaje de éxito que aparecerá después del envío -->
+              <div
+                id="mensaje-exito"
+                style="display: none; margin-top: 2rem; text-align: center"
+              >
+                <p style="font-size: 1.4rem; color: green; font-weight: bold">
+                  ¡Excelente desición!
+                </p>
+                <p style="font-size: 1.2rem">
+                  Tu descarga ha comenzado automáticamente.<br />
+                  Si no inicia, haz clic aquí:
+                </p>
+                <a
+                  href="/resources/ebook.pdf"
+                  download="Guia-Tus-Primeros-Pasos-Dra-Odalys-Martinez.pdf"
+                  class="poster-button"
+                  style="
+                    display: inline-block;
+                    margin-top: 1rem;
+                    text-decoration: none;
+                  "
+                >
+                  Descargar PDF Ahora
+                </a>
+              </div>
             </div>
           </div>
         </div>
