@@ -120,3 +120,31 @@ document.querySelectorAll('nav[role="navigation"] ul li a').forEach((link) => {
     link.classList.add("active");
   }
 });
+
+// Descargar recurso Guia
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("descarga-form");
+  const mensajeExito = document.getElementById("mensaje-exito");
+  const pdfUrl = "/resources/ebook.pdf";
+  const pdfNombre = "Guia-Tus-Primeros-Pasos-Dra-Odalys-Martinez.pdf";
+
+  if (form && mensajeExito) {
+    form.addEventListener("submit", function (e) {
+      // Netlify procesa el envío en segundo plano (captura los datos)
+
+      // Ocultamos el formulario
+      form.style.display = "none";
+
+      // Mostramos el mensaje de éxito
+      mensajeExito.style.display = "block";
+
+      // Iniciamos la descarga automática del PDF
+      const link = document.createElement("a");
+      link.href = pdfUrl;
+      link.download = pdfNombre;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+  }
+});
