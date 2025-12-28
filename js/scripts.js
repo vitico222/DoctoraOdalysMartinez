@@ -122,6 +122,8 @@ document.querySelectorAll('nav[role="navigation"] ul li a').forEach((link) => {
 });
 
 // Descargar recurso Guia
+
+// Descargar recurso Guia con AJAX (evita mensaje de Netlify)
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("descarga-form");
   const mensajeExito = document.getElementById("mensaje-exito");
@@ -130,21 +132,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (form && mensajeExito) {
     form.addEventListener("submit", function (e) {
-      // Netlify procesa el envío en segundo plano (captura los datos)
+      e.preventDefault(); // Evita el envío normal y el mensaje de Netlify
 
-      // Ocultamos el formulario
-      form.style.display = "none";
+      // Envío AJAX a Netlify
+      const formData = new FormData(form);
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString(),
+      })
+        .then(() => {
+          // Éxito: oculta form, muestra mensaje y descarga PDF
+          form.style.display = "none";
+          mensajeExito.style.display = "block";
 
-      // Mostramos el mensaje de éxito
-      mensajeExito.style.display = "block";
-
-      // Iniciamos la descarga automática del PDF
-      const link = document.createElement("a");
-      link.href = pdfUrl;
-      link.download = pdfNombre;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+          const link = document.createElement("a");
+          link.href = pdfUrl;
+          link.download = pdfNombre;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("Hubo un error al enviar. Intenta de nuevo.");
+        });
     });
   }
 });
